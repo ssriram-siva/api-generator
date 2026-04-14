@@ -2,6 +2,9 @@ import { useState } from "react";
 import CodeViewer from "./components/CodeViewer";
 import "./App.css";
 
+// 🔥 PRODUCTION API URL (Render backend)
+const API = "https://api-generator-6c4z.onrender.com";
+
 export default function App() {
   const [apiName, setApiName] = useState("");
   const [fields, setFields] = useState("");
@@ -10,7 +13,7 @@ export default function App() {
   const [route, setRoute] = useState("/");
   const [result, setResult] = useState(null);
 
-  // 🔵 FEEDBACK STATES
+  // FEEDBACK
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [feedbackStatus, setFeedbackStatus] = useState("");
@@ -19,7 +22,7 @@ export default function App() {
   // 🔵 GENERATE API
   const generate = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/generate", {
+      const res = await fetch(`${API}/api/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -33,7 +36,7 @@ export default function App() {
 
       const data = await res.json();
       setResult(data);
-    } catch {
+    } catch (err) {
       alert("Backend error");
     }
   };
@@ -44,11 +47,9 @@ export default function App() {
     setFeedbackStatus("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/feedback", {
+      const res = await fetch(`${API}/api/feedback`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, message })
       });
 
@@ -61,20 +62,19 @@ export default function App() {
       } else {
         setFeedbackStatus("error");
       }
-    } catch {
+    } catch (err) {
       setFeedbackStatus("server");
     }
 
     setLoading(false);
 
-    // auto hide after 3 sec
     setTimeout(() => setFeedbackStatus(""), 3000);
   };
 
   return (
     <div className="container">
 
-      {/* LEFT */}
+      {/* LEFT PANEL */}
       <div className="left">
         <h2>Backend Generator 🚀</h2>
 
@@ -120,7 +120,7 @@ export default function App() {
           Generate Code
         </button>
 
-        {/* 🔥 FEEDBACK */}
+        {/* FEEDBACK */}
         <div className="section">
           <h3>Feedback 💬</h3>
 
@@ -128,14 +128,14 @@ export default function App() {
             className="input"
             placeholder="Your Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
           />
 
           <textarea
             className="input"
             placeholder="Your Feedback"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={e => setMessage(e.target.value)}
             rows={4}
           />
 
@@ -147,7 +147,6 @@ export default function App() {
             {loading ? "Sending..." : "Send Feedback"}
           </button>
 
-          {/* 🔥 STATUS MESSAGE */}
           {feedbackStatus === "success" && (
             <p className="success-msg">✅ Feedback sent successfully!</p>
           )}
@@ -162,7 +161,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* RIGHT */}
+      {/* RIGHT PANEL */}
       <div className="right">
         {result ? (
           <>
