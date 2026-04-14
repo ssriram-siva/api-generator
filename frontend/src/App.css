@@ -1,0 +1,199 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background: #f1f5f9;
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* LEFT PANEL */
+.left {
+  width: 35%;
+  padding: 25px;
+  border-right: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+/* RIGHT PANEL */
+.right {
+  width: 65%;
+  padding: 25px;
+  background: #020617;
+  color: white;
+  overflow-y: auto;
+}
+
+/* HEADINGS */
+h2 {
+  margin-bottom: 10px;
+}
+
+/* INPUT */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: 0.2s;
+}
+
+.input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* BUTTON */
+.button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* SECTION */
+.section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* CARD */
+.card {
+  background: #020617;
+  border-radius: 14px;
+  margin-top: 20px;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+}
+
+/* HEADER */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  padding: 10px 15px;
+  border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* COPY BUTTON */
+.copy-btn {
+  background: #4f46e5;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.copy-btn:hover {
+  background: #6366f1;
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* CODE WRAPPER */
+.code-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 10px;
+}
+
+/* 🔥 Important fix for horizontal scroll */
+.code-wrapper pre {
+  min-width: max-content;
+}
+
+/* FEEDBACK */
+.success-msg {
+  margin-top: 10px;
+  color: #22c55e;
+  font-weight: 500;
+}
+
+.error-msg {
+  margin-top: 10px;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* SCROLLBAR (nice UI) */
+.code-wrapper::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.code-wrapper::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .right {
+    padding: 15px;
+  }
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 500px) {
+  .left {
+    padding: 15px;
+  }
+
+  .input {
+    font-size: 14px;
+  }
+
+  .button {
+    font-size: 14px;
+  }
+
+  .code-wrapper {
+    max-height: 300px;
+  }
+}
