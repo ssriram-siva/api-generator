@@ -1,0 +1,14 @@
+{
+  "name": "api-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "build": "npm install --prefix backend && npm install --prefix frontend/app && npm run build --prefix frontend/app",
+  "start": "npm run start --prefix backend"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
